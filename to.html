@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" >
+   
+    
+    <title> To Do List  </title>
+</head>
+
+<body>
+    <h1> My To Do List </h1>
+    
+    <form id="form">
+        <input type="text" id="text" name="text" placeholder="Nouvelle Tache" >
+        <button id="bu-tton" type="button"> + Ajouter </button>
+        
+    </form> 
+       <ul id="tasks" ></ul>
+
+
+
+    <script>
+
+        const button = document.getElementById('bu-tton');
+
+        button.addEventListener("click" , ajouter );
+function ajouter (){
+
+    const input = document.getElementById('text');
+    const valeur = input.value.trim();
+     
+    if(valeur === "") return;
+        
+    const li = document.createElement('li');
+    ///li.textContent = valeur;
+
+       const span = document.createElement('span');
+       span.textContent = valeur;
+       li.appendChild(span);
+
+   let button2 = document.createElement('button');
+   button2.textContent = "🗑️" ;
+   button2.style.marginLeft = "50px";
+   button2.addEventListener("click" , function (){
+    li.remove();
+   })
+   li.appendChild(button2);
+
+
+   let button3 = document.createElement('button');
+   button3.textContent = '📝' ;
+   button3.style.marginLeft = "10px" ;
+   button3.addEventListener("click" , function (){
+    const newtache = prompt("Modifier la tache :" , span.textContent );
+    if( newtache && newtache.trim() != ""){
+        span.textContent = newtache.trim();
+    }
+   })
+   li.appendChild(button3);
+
+    const ul = document.getElementById('tasks');
+    ul.appendChild(li);
+    
+    input.value = "" ;
+     }
+
+    </script>
+</body>
+ 
+</html>
